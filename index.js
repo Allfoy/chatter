@@ -9,9 +9,14 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 // Middleware
+const cors = require('cors');
+
+// Allow your GitHub Pages origin
+app.use(cors({ origin: 'https://allfoy.github.io' }));
+
+// Other middleware (like express.json) below this
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(require('cors')({ origin: true }));
 
 // MongoDB Setup
 mongoose.connect(process.env.MONGO_URI)
