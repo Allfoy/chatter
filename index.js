@@ -11,7 +11,7 @@ const io = new Server(server);
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(require('cors')());
+app.use(require('cors')({ origin: true }));
 
 // MongoDB Setup
 mongoose.connect(process.env.MONGO_URI)
