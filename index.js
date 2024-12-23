@@ -6,7 +6,12 @@ const mongoose = require('mongoose');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: 'https://allfoy.github.io',
+    methods: ['GET', 'POST']
+  }
+});
 
 // Middleware
 const cors = require('cors');
