@@ -61,5 +61,5 @@ app.get("/", (req, res) => res.send("Chat App is running."));
 
 // Start the server
 server.listen(3000, () =>
-	console.log("Server is running on http://localhost:3000")
+	console.log("Server is running on https://chatter-ioha.onrender.com")
 );
