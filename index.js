@@ -37,29 +37,22 @@ const messageSchema = new mongoose.Schema({
 });
 const Message = mongoose.model("Message", messageSchema);
 
-// Socket.io chat Logic
+// Socket.io chat
 io.on("connection", (socket) => {
 	console.log("A user connected.");
-
 	// Emit previous messages
 	Message.find().then((messages) =>
 		socket.emit("previousMessages", messages)
 	);
-
 	// Save & broadcast messages
 	socket.on("chatMessage", async (data) => {
 		const newMessage = new Message(data);
 		await newMessage.save();
 		io.emit("chatMessage", newMessage);
 	});
-
 	socket.on("disconnect", () => console.log("A user disconnected."));
-});
-
-// socket.io confetti button logic
-socket.on('classIconClicked', () => {
-    // Broadcast confetti event to all clients
-    io.emit('confetti');
+    // socket.io confetti button
+    socket.on('classIconClicked', () => io.emit('confetti'));
 });
 
 // Routes
