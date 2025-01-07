@@ -37,7 +37,7 @@ const messageSchema = new mongoose.Schema({
 });
 const Message = mongoose.model("Message", messageSchema);
 
-// Socket.io Logic
+// Socket.io chat Logic
 io.on("connection", (socket) => {
 	console.log("A user connected.");
 
@@ -54,6 +54,12 @@ io.on("connection", (socket) => {
 	});
 
 	socket.on("disconnect", () => console.log("A user disconnected."));
+});
+
+// socket.io confetti button logic
+socket.on('classIconClicked', () => {
+    // Broadcast confetti event to all clients
+    io.emit('confetti');
 });
 
 // Routes
