@@ -39,8 +39,8 @@ const Message = mongoose.model("Message", messageSchema);
 
 // serverStartTime Schema
 const serverStartTimeSchema = new mongoose.Schema({
-	serverStartTime: String,
-	timestamp: { type: Date, default: Date.now },
+	timeDay: String,
+    timeDifference: String,
 });
 const serverStartTime = mongoose.model("serverStartTime", serverStartTimeSchema);
 
