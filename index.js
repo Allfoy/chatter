@@ -37,13 +37,6 @@ const messageSchema = new mongoose.Schema({
 });
 const Message = mongoose.model("Message", messageSchema);
 
-// serverStartTime Schema
-const serverStartTimeSchema = new mongoose.Schema({
-	timeDay: String,
-    timeDifference: Number,
-});
-const serverStartTime = mongoose.model("serverStartTime", serverStartTimeSchema);
-
 // Socket.io chat
 io.on("connection", (socket) => {
 	console.log("A user connected.");
@@ -60,12 +53,6 @@ io.on("connection", (socket) => {
 	socket.on("disconnect", () => console.log("A user disconnected."));
     // socket.io confetti button
     socket.on('classIconClicked', () => io.emit('confetti'));
-    // save serverStartTime to mongodb
-    socket.on("serverStartTime", async (arg) => {
-        //send arg to mongodb
-        const newserverStartTime = new serverStartTime(arg);
-		await newserverStartTime.save();
-    });
 });
 
 // Routes
